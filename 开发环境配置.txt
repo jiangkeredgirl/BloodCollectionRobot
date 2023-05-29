@@ -1,0 +1,23 @@
+开发环境:
+1)  操作系统: win10、win11
+2) 平台:     x64
+3) C++标准: 默认 >= C++14
+4) 开发工具: vs2022+qt6.5.0、qt6.15.2；安装vs2022、安装qt6.5.0或者qt6.15.2
+5) VS的Qt插件: Qt Visual Studio Tools;安装Qt Visual Studio Tools步骤：扩展->管理扩展->联机->搜索 “qt”->搜索出Qt Visual Studio Tools插件
+   ->单击Qt Visual Studio Tools->点击下载->按提示安装插件，安装过程中会提示关闭VS，按提示要求关闭VS，完成安装。
+
+目录配置：
+1) 输出目录: $(SolutionDir)buildout\$(Platform)\$(Configuration)\；配置路径：打开工程属性页->配置属性->常规
+   ->输出目录:$(SolutionDir)buildout\$(Platform)\$(Configuration)\
+2) 中间目录: $(SolutionDir)build\$(Platform)\$(Configuration)\；配置路径：打开工程属性页->配置属性->常规
+      ->中间目录:$(SolutionDir)build\$(Platform)\$(Configuration)\
+3) 工作目录: $(OutDir)；配置路径：打开工程属性页->配置属性->调试->工作目录:$(OutDir)
+
+编译环境改变时，需做如下配置：
+1)  windows SDK版本配置：
+   Windows SDK: 10.0 (最新安装的版本); 配置路径：打开工程属性页->配置属性->常规->Windows SDK 版本:根据实际安装的WindowsSDK版本选择
+
+2) QT版本配置: 根据实际安装的qt版本,假定安装的是qt6.5.0
+   2.1) QT Version: 6.5.0; 配置路径:扩展->Qt VS Tools->QT Versions->打开选项窗口->Qt->Versions->勾选配置好的qt版本
+                 ，如果qt版本没有配置，那就点击<add new Qt version> 配置安装的qt版本。
+   2.2) Qt Installation:6.5.0; 配置路径：打开工程属性页->配置属性->Qt Project Settings->Qt Installation:选择配置好的qt版本
