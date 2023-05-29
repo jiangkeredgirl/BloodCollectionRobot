@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4A5745EA-C42D-4C6A-8679-DF8E5535EFA3}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>6.4.0_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>6.4.0_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <IncludePath>.\include\opensource\spdlog-1\include;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)buildout\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutDir>$(SolutionDir)buildout\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>.\include\opensource\spdlog-1\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ArmPlateDevice.cpp" />
+    <ClCompile Include="ArmPlateDeviceSim.cpp" />
+    <ClCompile Include="ArmPlateDeviceUI.cpp" />
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="ControllerUIAdapter.cpp" />
+    <ClCompile Include="DeviceUI.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="RobotArmDevice.cpp" />
+    <ClCompile Include="RobotArmDeviceSim.cpp" />
+    <ClCompile Include="RobotArmDeviceUI.cpp" />
+    <ClCompile Include="SimuDevicesPanel.cpp" />
+    <ClCompile Include="statemachine\DeviceErrorHandler.cpp" />
+    <ClCompile Include="statemachine\DeviceErrorHandlerAbnormal.cpp" />
+    <ClCompile Include="statemachine\DeviceErrorHandlerNormal.cpp" />
+    <ClCompile Include="statemachine\DeviceOperaHandler.cpp" />
+    <ClCompile Include="statemachine\DeviceOperaHandlerAbnormal.cpp" />
+    <ClCompile Include="statemachine\DeviceOperaHandlerNormal.cpp" />
+    <ClCompile Include="statemachine\DeviceStateHandler.cpp" />
+    <ClCompile Include="statemachine\DeviceStateHandlerAbnormal.cpp" />
+    <ClCompile Include="statemachine\DeviceStateHandlerNormal.cpp" />
+    <ClCompile Include="SyringeDevice.cpp" />
+    <ClCompile Include="SyringeDeviceSim.cpp" />
+    <ClCompile Include="SyringeDeviceUI.cpp" />
+    <ClCompile Include="SystemDevice.cpp" />
+    <ClCompile Include="SystemDeviceUI.cpp" />
+    <ClCompile Include="UltrasoundDevice.cpp" />
+    <ClCompile Include="UltrasoundDeviceSim.cpp" />
+    <ClCompile Include="UltrasoundDeviceUI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="SystemDeviceUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="ArmPlateDeviceUI.ui" />
+    <QtUic Include="RobotArmDeviceUI.ui" />
+    <QtUic Include="SimuDevicesPanel.ui" />
+    <QtUic Include="SyringeDeviceUI.ui" />
+    <QtUic Include="SystemDeviceUI.ui" />
+    <QtUic Include="UltrasoundDeviceUI.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ArmPlateDeviceUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="RobotArmDeviceUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="UltrasoundDeviceUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="SyringeDeviceUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ArmPlateDevice.h" />
+    <QtMoc Include="ArmPlateDeviceSim.h" />
+    <ClInclude Include="Controller.h" />
+    <QtMoc Include="ControllerUIAdapter.h" />
+    <QtMoc Include="DeviceUI.h" />
+    <ClInclude Include="RobotArmDevice.h" />
+    <QtMoc Include="RobotArmDeviceSim.h" />
+    <QtMoc Include="SimuDevicesPanel.h" />
+    <ClInclude Include="statemachine\DeviceErrorHandler.h" />
+    <ClInclude Include="statemachine\DeviceErrorHandlerAbnormal.h" />
+    <ClInclude Include="statemachine\DeviceErrorHandlerNormal.h" />
+    <ClInclude Include="statemachine\DeviceOperaHandler.h" />
+    <ClInclude Include="statemachine\DeviceOperaHandlerAbnormal.h" />
+    <ClInclude Include="statemachine\DeviceOperaHandlerNormal.h" />
+    <ClInclude Include="statemachine\DeviceStateHandler.h" />
+    <ClInclude Include="statemachine\DeviceStateHandlerAbnormal.h" />
+    <ClInclude Include="statemachine\DeviceStateHandlerNormal.h" />
+    <ClInclude Include="statemachine\DeviceTemplateHandler.h" />
+    <ClInclude Include="statemachine\IDeviceErrorHandler.h" />
+    <ClInclude Include="statemachine\IDeviceOperaHandler.h" />
+    <ClInclude Include="statemachine\IDeviceStateHandler.h" />
+    <ClInclude Include="SyringeDevice.h" />
+    <QtMoc Include="SyringeDeviceSim.h" />
+    <ClInclude Include="SystemDevice.h" />
+    <ClInclude Include="UltrasoundDevice.h" />
+    <QtMoc Include="UltrasoundDeviceSim.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="statemachine">
+      <UniqueIdentifier>{0fc68d04-cc68-472f-a16e-089361b3cd31}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemDeviceUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ArmPlateDeviceUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotArmDeviceUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UltrasoundDeviceUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SyringeDeviceUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ArmPlateDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotArmDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SyringeDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UltrasoundDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ArmPlateDeviceSim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotArmDeviceSim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SyringeDeviceSim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UltrasoundDeviceSim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimuDevicesPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerUIAdapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine\DeviceErrorHandler.cpp">
+      <Filter>statemachine</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine\DeviceOperaHandler.cpp">
+      <Filter>statemachine</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine\DeviceStateHandler.cpp">
+      <Filter>statemachine</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine\DeviceErrorHandlerAbnormal.cpp">
+      <Filter>statemachine</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine\DeviceErrorHandlerNormal.cpp">
+      <Filter>statemachine</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine\DeviceOperaHandlerAbnormal.cpp">
+      <Filter>statemachine</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine\DeviceStateHandlerAbnormal.cpp">
+      <Filter>statemachine</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine\DeviceStateHandlerNormal.cpp">
+      <Filter>statemachine</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine\DeviceOperaHandlerNormal.cpp">
+      <Filter>statemachine</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="SystemDeviceUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ArmPlateDeviceUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="RobotArmDeviceUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="UltrasoundDeviceUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SyringeDeviceUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SimuDevicesPanel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ArmPlateDeviceSim.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="RobotArmDeviceSim.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SyringeDeviceSim.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="UltrasoundDeviceSim.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ControllerUIAdapter.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="DeviceUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="SystemDeviceUI.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ArmPlateDeviceUI.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="RobotArmDeviceUI.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="UltrasoundDeviceUI.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="SyringeDeviceUI.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="SimuDevicesPanel.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArmPlateDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotArmDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SyringeDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UltrasoundDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceErrorHandler.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceOperaHandler.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceStateHandler.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\IDeviceErrorHandler.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\IDeviceOperaHandler.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\IDeviceStateHandler.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceTemplateHandler.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceErrorHandlerAbnormal.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceErrorHandlerNormal.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceOperaHandlerAbnormal.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceStateHandlerAbnormal.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceStateHandlerNormal.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\DeviceOperaHandlerNormal.h">
+      <Filter>statemachine</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
