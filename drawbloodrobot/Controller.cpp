@@ -22,106 +22,27 @@ int Controller::CreateDevices()
 	m_deviceevent.state_event = std::bind(&Controller::DeviceStateEventReceiver, this, std::placeholders::_1);
 
 	m_systemdevice = NewSystemDevice(SYSTEMDEVICE_NUM_0, m_deviceevent);
-
-
-#if !USE_SIMU_PLATE
-	m_armplatedevice = NewArmPlateDevice(ARMPLATEDEVICE_NUM_0, m_deviceevent);
-#endif
-
-#if !USE_SIMU_ARM
-	m_robotarmdevice = NewRobotArmDevice(ROBOTARMDEVICE_NUM_0, m_deviceevent);
-#endif
-	CreateSimDevices();
 	
 	/// 启动数据处理线程,开始处理所有事件，包括状态变化、操作、错误
 	m_eventdata.Open([this](const shared_ptr<BloodRobotEvent>& event)->int {  return EventDistribute(event); });
 	SetSystemState(DEVICE_STATE_NORMAL);
-	OpenDevices();
+	if (m_systemdevice)
+	{
+		m_systemdevice->Open();
+	}
+	
 	return 0;
 }
 
 int Controller::DestroyDevices()
 {
-	CloseDevices();
-	DestroySimDevices();
-#if !USE_SIMU_PLATE
-	DeleteArmPlateDevice(m_armplatedevice);
-#endif
-
-#if !USE_SIMU_ARM
-	DeleteRobotArmDevice(m_robotarmdevice);
-#endif
-	return 0;
-}
-
-int Controller::CreateSimDevices()
-{
-	LOG_INFO("CreateSimDevices");
-
-	int simulator_count = USE_SIMU_PLATE + USE_SIMU_ARM + USE_SIMU_ARM + USE_SIMU_SYRING + USE_SIMU_ULTRA;
-	if (simulator_count > 0)
+	if (m_systemdevice)
 	{
-		m_simupanel = new SimuDevicesPanel(nullptr);
-		m_simupanel->show();
-	}
+		m_systemdevice->Close();
+		m_eventdata.Close();
+		DeleteSystemDevice(m_systemdevice);
+	}	
 
-#if USE_SIMU_PLATE
-	m_armplatedevice = NewArmPlateDevice(ARMPLATEDEVICE_NUM_0, m_deviceevent);
-	m_simupanel->AddSimDevice(dynamic_cast<ArmPlateDeviceSim*>(m_armplatedevice), m_armplatedevice->GetDeviceValue().device_name.c_str());
-#endif
-
-#if USE_SIMU_ARM
-	m_robotarmdevice = NewRobotArmDevice(ROBOTARMDEVICE_NUM_0, m_deviceevent);
-	m_simupanel->AddSimDevice(dynamic_cast<RobotArmDeviceSim*>(m_robotarmdevice), m_robotarmdevice->GetDeviceValue().device_name.c_str());
-#endif
-
-#if USE_SIMU_ULTRA
-	m_ultradevice = NewUltrasoundDevice(ULTRASOUNDDEVICE_NUM_0, m_deviceevent);
-	m_simupanel->AddSimDevice(dynamic_cast<UltrasoundDeviceSim*>(m_ultradevice), m_ultradevice->GetDeviceValue().device_name.c_str());
-#endif
-
-#if USE_SIMU_SYRING
-	m_syringedevice = NewSyringeDevice(SYRINGEDEVICE_NUM_0, m_deviceevent);
-	m_simupanel->AddSimDevice(dynamic_cast<SyringeDeviceSim*>(m_syringedevice), m_syringedevice->GetDeviceValue().device_name.c_str());
-#endif
-
-	return 0;
-}
-
-int Controller::DestroySimDevices()
-{
-#if USE_SIMU_PLATE
-	DeleteArmPlateDevice(m_armplatedevice);
-#endif
-
-#if USE_SIMU_ARM
-	DeleteRobotArmDevice(m_robotarmdevice);
-#endif
-
-#if USE_SIMU_ULTRA
-	DeleteUltrasoundDevice(m_ultradevice);
-#endif
-
-#if USE_SIMU_SYRING
-	DeleteSyringeDevice(m_syringedevice);
-#endif
-
-	if (m_simupanel)
-	{
-		delete m_simupanel;
-	}
-	return 0;
-
-}
-
-int Controller::OpenDevices()
-{
-	return 0;
-}
-
-int Controller::CloseDevices()
-{
-	m_eventdata.Close();
 	return 0;
 }
 
@@ -168,38 +89,10 @@ int Controller::GetSystemState()
 bool Controller::DevicesIsNormal()
 {
 	bool all_normal = false;
-	do
+	if (m_systemdevice)
 	{
-		if (m_armplatedevice)
-		{
-			if (m_armplatedevice->GetDeviceValue().device_state == DEVICE_STATE_ABNORMAL)
-			{
-				break;
-			}
-		}
-		if (m_robotarmdevice)
-		{
-			if (m_robotarmdevice->GetDeviceValue().device_state == DEVICE_STATE_ABNORMAL)
-			{
-				break;
-			}
-		}
-		if (m_ultradevice)
-		{
-			if (m_ultradevice->GetDeviceValue().device_state == DEVICE_STATE_ABNORMAL)
-			{
-				break;
-			}
-		}
-		if (m_syringedevice)
-		{
-			if (m_syringedevice->GetDeviceValue().device_state == DEVICE_STATE_ABNORMAL)
-			{
-				break;
-			}
-		}
-		all_normal = true;
-	} while (false);
+		all_normal = m_systemdevice->DevicesIsNormal();
+	}
 	return all_normal;
 }
 

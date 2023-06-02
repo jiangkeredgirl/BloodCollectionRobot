@@ -7,20 +7,23 @@ SystemDevice::SystemDevice(int device_num, DeviceEvent device_event)
     m_devicevalue.device_name = "SystemDevice";
     m_devicevalue.device_num  = device_num;
     m_deviceevent             = device_event;
+    CreateDevices();
 }
 
 SystemDevice::~SystemDevice()
 {
-
+    DestroyDevices();
 }
 
 int SystemDevice::Open()
 {
+    OpenDevices();
     return 0;
 }
 
 int SystemDevice::Close()
 {
+    CloseDevices();
     return 0;
 }
 
@@ -44,6 +47,179 @@ int SystemDevice::SetSystemState(int state)
     int errorcode = SetState(state);
     return errorcode;
 }
+
+bool SystemDevice::DevicesIsNormal()
+{
+    bool all_normal = false;
+    do
+    {
+        if (m_armplatedevice)
+        {
+            if (m_armplatedevice->GetDeviceValue().device_state == DEVICE_STATE_ABNORMAL)
+            {
+                break;
+            }
+        }
+        if (m_robotarmdevice)
+        {
+            if (m_robotarmdevice->GetDeviceValue().device_state == DEVICE_STATE_ABNORMAL)
+            {
+                break;
+            }
+        }
+        if (m_ultradevice)
+        {
+            if (m_ultradevice->GetDeviceValue().device_state == DEVICE_STATE_ABNORMAL)
+            {
+                break;
+            }
+        }
+        if (m_syringedevice)
+        {
+            if (m_syringedevice->GetDeviceValue().device_state == DEVICE_STATE_ABNORMAL)
+            {
+                break;
+            }
+        }
+        all_normal = true;
+    } while (false);
+    return all_normal;
+}
+
+int SystemDevice::CreateDevices()
+{
+#if !USE_SIMU_PLATE
+    m_armplatedevice = NewArmPlateDevice(ARMPLATEDEVICE_NUM_0, m_deviceevent);
+#endif
+
+#if !USE_SIMU_ARM
+    m_robotarmdevice = NewRobotArmDevice(ROBOTARMDEVICE_NUM_0, m_deviceevent);
+#endif
+
+    CreateSimDevices();
+
+    return 0;
+}
+
+int SystemDevice::DestroyDevices()
+{    
+#if !USE_SIMU_PLATE
+    DeleteArmPlateDevice(m_armplatedevice);
+#endif
+
+#if !USE_SIMU_ARM
+    DeleteRobotArmDevice(m_robotarmdevice);
+#endif
+
+    DestroySimDevices();
+
+    return 0;
+}
+
+int SystemDevice::CreateSimDevices()
+{
+    LOG_INFO("CreateSimDevices");
+
+    int simulator_count = USE_SIMU_PLATE + USE_SIMU_ARM + USE_SIMU_ARM + USE_SIMU_SYRING + USE_SIMU_ULTRA;
+    if (simulator_count > 0)
+    {
+        m_simupanel = new SimuDevicesPanel(nullptr);
+        m_simupanel->show();
+    }
+
+#if USE_SIMU_PLATE
+    m_armplatedevice = NewArmPlateDevice(ARMPLATEDEVICE_NUM_0, m_deviceevent);
+    m_simupanel->AddSimDevice(dynamic_cast<ArmPlateDeviceSim*>(m_armplatedevice), m_armplatedevice->GetDeviceValue().device_name.c_str());
+#endif
+
+#if USE_SIMU_ARM
+    m_robotarmdevice = NewRobotArmDevice(ROBOTARMDEVICE_NUM_0, m_deviceevent);
+    m_simupanel->AddSimDevice(dynamic_cast<RobotArmDeviceSim*>(m_robotarmdevice), m_robotarmdevice->GetDeviceValue().device_name.c_str());
+#endif
+
+#if USE_SIMU_ULTRA
+    m_ultradevice = NewUltrasoundDevice(ULTRASOUNDDEVICE_NUM_0, m_deviceevent);
+    m_simupanel->AddSimDevice(dynamic_cast<UltrasoundDeviceSim*>(m_ultradevice), m_ultradevice->GetDeviceValue().device_name.c_str());
+#endif
+
+#if USE_SIMU_SYRING
+    m_syringedevice = NewSyringeDevice(SYRINGEDEVICE_NUM_0, m_deviceevent);
+    m_simupanel->AddSimDevice(dynamic_cast<SyringeDeviceSim*>(m_syringedevice), m_syringedevice->GetDeviceValue().device_name.c_str());
+#endif
+
+    return 0;
+}
+
+int SystemDevice::DestroySimDevices()
+{
+#if USE_SIMU_PLATE
+    DeleteArmPlateDevice(m_armplatedevice);
+#endif
+
+#if USE_SIMU_ARM
+    DeleteRobotArmDevice(m_robotarmdevice);
+#endif
+
+#if USE_SIMU_ULTRA
+    DeleteUltrasoundDevice(m_ultradevice);
+#endif
+
+#if USE_SIMU_SYRING
+    DeleteSyringeDevice(m_syringedevice);
+#endif
+
+    if (m_simupanel)
+    {
+        delete m_simupanel;
+    }
+
+    return 0;
+}
+
+int SystemDevice::OpenDevices()
+{
+    if (m_armplatedevice)
+    {
+        m_armplatedevice->Open();
+    }
+    if (m_robotarmdevice)
+    {
+        m_robotarmdevice->Open();
+    }
+    if (m_ultradevice)
+    {
+        m_ultradevice->Open();
+    }
+    if (m_syringedevice)
+    {
+        m_syringedevice->Open();
+    }
+
+    return 0;
+}
+
+int SystemDevice::CloseDevices()
+{
+    if (m_armplatedevice)
+    {
+        m_armplatedevice->Close();
+    }
+    if (m_robotarmdevice)
+    {
+        m_robotarmdevice->Close();
+    }
+    if (m_ultradevice)
+    {
+        m_ultradevice->Close();
+    }
+    if (m_syringedevice)
+    {
+        m_syringedevice->Close();
+    }
+
+    return 0;
+}
+
 
 int SystemDevice::CheckError()
 {

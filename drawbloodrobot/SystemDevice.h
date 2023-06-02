@@ -7,6 +7,24 @@
  *********************************************************************/
 
 #include "./include/idevices/ISystemDevice.h"
+#include "./include/idevices/IDevice.h"
+#include "./include/idevices/ISystemDevice.h"
+#include "./include/idevices/IArmPlateDevice.h"
+#include "./include/idevices/IRobotArmDevice.h"
+#include "./include/idevices/IUltrasoundDevice.h"
+#include "./include/idevices/ISyringeDevice.h"
+#include "SimuDevicesPanel.h"
+#include "ArmPlateDeviceSim.h"
+#include "RobotArmDeviceSim.h"
+#include "SyringeDeviceSim.h"
+#include "UltrasoundDeviceSim.h"
+
+ /// 是否使用设备模拟器
+#define USE_SIMU_PLATE      1  //< 使用模拟采血台设备
+#define USE_SIMU_ARM        1  //< 使用模拟机械臂设备
+#define USE_SIMU_ULTRA      1  //< 使用模拟超声波设备
+#define USE_SIMU_SYRING     1  //< 使用模拟注射器设备
+
 
 class SystemDevice : public ISystemDevice
 {
@@ -25,6 +43,16 @@ public:
     virtual int UrgentStop() override;
     // 设置状态，状态的变化会影响状态机的调用
     virtual int SetSystemState(int state) override;
+    // 所有设备是否正常
+    virtual bool DevicesIsNormal() override;
+
+private:
+    int CreateDevices();    // 创建设备
+    int DestroyDevices();   // 退出设备
+    int CreateSimDevices();  // 创建模拟设备
+    int DestroySimDevices(); // 删除模拟设备
+    int OpenDevices();       // 开启设备
+    int CloseDevices();      // 关闭设备
 
 private:
     /**
@@ -55,5 +83,13 @@ private:
 private:
     DeviceValue m_devicevalue;
     DeviceEvent m_deviceevent;
+
+private:
+    IArmPlateDevice* m_armplatedevice = nullptr;   //< 采血台
+    IRobotArmDevice* m_robotarmdevice = nullptr;   //< 机械臂    
+    IUltrasoundDevice* m_ultradevice = nullptr;    //< 超声波
+    ISyringeDevice* m_syringedevice = nullptr;     //< 注射器
+    SimuDevicesPanel* m_simupanel = nullptr;       //< 设备模拟器面板
+
 };
 

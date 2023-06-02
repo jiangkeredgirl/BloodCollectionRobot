@@ -18,6 +18,8 @@ public:
 	virtual int UrgentStop() = 0;
 	// 设置状态，状态的变化会影响状态机的调用
 	virtual int SetSystemState(int state) = 0;
+	// 所有设备是否正常
+	virtual bool DevicesIsNormal() = 0;
 
 };
 
