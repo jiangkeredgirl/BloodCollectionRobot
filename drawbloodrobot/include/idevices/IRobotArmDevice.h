@@ -21,9 +21,9 @@ public:
 extern "C" {
 #endif
 	IRobotArmDevice* NewRobotArmDevice(int device_num, DeviceEvent device_event);
-	//typedef IRobotArmDevice* (*NewRobotArmDeviceFun)(int device_num, DeviceEvent device_event);
 	void DeleteRobotArmDevice(IRobotArmDevice* device);
-	//typedef void(*DeleteRobotArmDeviceFun)(IRobotArmDevice* device);
+	IRobotArmDevice* NewRobotArmDeviceSim(int device_num, DeviceEvent device_event);
+	void DeleteRobotArmDeviceSim(IRobotArmDevice* device);
 #ifdef __cplusplus
 }
 #endif

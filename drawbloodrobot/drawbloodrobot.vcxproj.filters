@@ -24,6 +24,9 @@
     <Filter Include="statemachine">
       <UniqueIdentifier>{0fc68d04-cc68-472f-a16e-089361b3cd31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="idevices">
+      <UniqueIdentifier>{0c56aebc-6fa9-4e09-830d-4246065ba7e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -226,6 +229,24 @@
     </ClInclude>
     <ClInclude Include="statemachine\DeviceOperaHandlerNormal.h">
       <Filter>statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\idevices\IArmPlateDevice.h">
+      <Filter>idevices</Filter>
+    </ClInclude>
+    <ClInclude Include="include\idevices\IDevice.h">
+      <Filter>idevices</Filter>
+    </ClInclude>
+    <ClInclude Include="include\idevices\IRobotArmDevice.h">
+      <Filter>idevices</Filter>
+    </ClInclude>
+    <ClInclude Include="include\idevices\ISyringeDevice.h">
+      <Filter>idevices</Filter>
+    </ClInclude>
+    <ClInclude Include="include\idevices\ISystemDevice.h">
+      <Filter>idevices</Filter>
+    </ClInclude>
+    <ClInclude Include="include\idevices\IUltrasoundDevice.h">
+      <Filter>idevices</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

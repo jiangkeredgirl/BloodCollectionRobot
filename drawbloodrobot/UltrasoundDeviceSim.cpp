@@ -299,12 +299,12 @@ int UltrasoundDeviceSim::SlotSetError(int error)
 }
 
 
-IUltrasoundDevice* NewUltrasoundDevice(int device_num, DeviceEvent device_event)
+IUltrasoundDevice* NewUltrasoundDeviceSim(int device_num, DeviceEvent device_event)
 {
 	return new UltrasoundDeviceSim(device_num, device_event);
 }
 
-void DeleteUltrasoundDevice(IUltrasoundDevice* device)
+void DeleteUltrasoundDeviceSim(IUltrasoundDevice* device)
 {
 	if (device)
 	{

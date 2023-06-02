@@ -299,12 +299,12 @@ int SyringeDeviceSim::SlotSetError(int error)
 }
 
 
-ISyringeDevice* NewSyringeDevice(int device_num, DeviceEvent device_event)
+ISyringeDevice* NewSyringeDeviceSim(int device_num, DeviceEvent device_event)
 {
 	return new SyringeDeviceSim(device_num, device_event);
 }
 
-void DeleteSyringeDevice(ISyringeDevice* device)
+void DeleteSyringeDeviceSim(ISyringeDevice* device)
 {
 	if (device)
 	{

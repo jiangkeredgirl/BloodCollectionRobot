@@ -21,9 +21,9 @@ public:
 extern "C" {
 #endif
 	IUltrasoundDevice* NewUltrasoundDevice(int device_num, DeviceEvent device_event);
-	//typedef IUltrasoundDevice* (*NewUltrasoundDeviceFun)(int device_num, DeviceEvent device_event);
 	void DeleteUltrasoundDevice(IUltrasoundDevice* device);
-	//typedef void(*DeleteUltrasoundDeviceFun)(IUltrasoundDevice* device);
+	IUltrasoundDevice* NewUltrasoundDeviceSim(int device_num, DeviceEvent device_event);
+	void DeleteUltrasoundDeviceSim(IUltrasoundDevice* device);
 #ifdef __cplusplus
 }
 #endif

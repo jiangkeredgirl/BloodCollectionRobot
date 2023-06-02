@@ -303,12 +303,12 @@ int RobotArmDeviceSim::SlotSetError(int error)
     return 0;
 }
 
-IRobotArmDevice* NewRobotArmDevice(int device_num, DeviceEvent device_event)
+IRobotArmDevice* NewRobotArmDeviceSim(int device_num, DeviceEvent device_event)
 {
     return new RobotArmDeviceSim(device_num, device_event);
 }
 
-void DeleteRobotArmDevice(IRobotArmDevice* device)
+void DeleteRobotArmDeviceSim(IRobotArmDevice* device)
 {
     if (device)
     {

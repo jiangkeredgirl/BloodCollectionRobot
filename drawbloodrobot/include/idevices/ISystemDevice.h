@@ -27,9 +27,9 @@ public:
 extern "C" {
 #endif
 	ISystemDevice* NewSystemDevice(int device_num, DeviceEvent device_event);
-	//typedef ISystemDevice* (*NewSystemDeviceFun)(int device_count, DeviceEvent device_event);
 	void DeleteSystemDevice(ISystemDevice* device);
-	//typedef void(*DeleteSystemDeviceFun)(ISystemDevice* device);
+	ISystemDevice* NewSystemDeviceSim(int device_num, DeviceEvent device_event);
+	void DeleteSystemDeviceSim(ISystemDevice* device);
 #ifdef __cplusplus
 }
 #endif

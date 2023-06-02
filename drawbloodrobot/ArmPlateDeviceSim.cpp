@@ -306,12 +306,12 @@ int ArmPlateDeviceSim::SlotSetError(int error)
 }
 
 
-IArmPlateDevice* NewArmPlateDevice(int device_num, DeviceEvent device_event)
+IArmPlateDevice* NewArmPlateDeviceSim(int device_num, DeviceEvent device_event)
 {
 	return new ArmPlateDeviceSim(device_num, device_event);
 }
 
-void DeleteArmPlateDevice(IArmPlateDevice* device)
+void DeleteArmPlateDeviceSim(IArmPlateDevice* device)
 {
 	if (device)
 	{

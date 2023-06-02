@@ -96,6 +96,14 @@ int SystemDevice::CreateDevices()
     m_robotarmdevice = NewRobotArmDevice(ROBOTARMDEVICE_NUM_0, m_deviceevent);
 #endif
 
+#if !USE_SIMU_ULTRA
+    m_ultradevice = NewUltrasoundDevice(ULTRASOUNDDEVICE_NUM_0, m_deviceevent);
+#endif
+
+#if !USE_SIMU_SYRING
+    m_syringedevice = NewSyringeDevice(SYRINGEDEVICE_NUM_0, m_deviceevent);
+#endif
+
     CreateSimDevices();
 
     return 0;
@@ -109,6 +117,14 @@ int SystemDevice::DestroyDevices()
 
 #if !USE_SIMU_ARM
     DeleteRobotArmDevice(m_robotarmdevice);
+#endif
+
+#if !USE_SIMU_ULTRA
+    DeleteUltrasoundDevice(m_ultradevice);
+#endif
+
+#if !USE_SIMU_SYRING
+    DeleteSyringeDevice(m_syringedevice);
 #endif
 
     DestroySimDevices();
@@ -128,22 +144,22 @@ int SystemDevice::CreateSimDevices()
     }
 
 #if USE_SIMU_PLATE
-    m_armplatedevice = NewArmPlateDevice(ARMPLATEDEVICE_NUM_0, m_deviceevent);
+    m_armplatedevice = NewArmPlateDeviceSim(ARMPLATEDEVICE_NUM_0, m_deviceevent);
     m_simupanel->AddSimDevice(dynamic_cast<ArmPlateDeviceSim*>(m_armplatedevice), m_armplatedevice->GetDeviceValue().device_name.c_str());
 #endif
 
 #if USE_SIMU_ARM
-    m_robotarmdevice = NewRobotArmDevice(ROBOTARMDEVICE_NUM_0, m_deviceevent);
+    m_robotarmdevice = NewRobotArmDeviceSim(ROBOTARMDEVICE_NUM_0, m_deviceevent);
     m_simupanel->AddSimDevice(dynamic_cast<RobotArmDeviceSim*>(m_robotarmdevice), m_robotarmdevice->GetDeviceValue().device_name.c_str());
 #endif
 
 #if USE_SIMU_ULTRA
-    m_ultradevice = NewUltrasoundDevice(ULTRASOUNDDEVICE_NUM_0, m_deviceevent);
+    m_ultradevice = NewUltrasoundDeviceSim(ULTRASOUNDDEVICE_NUM_0, m_deviceevent);
     m_simupanel->AddSimDevice(dynamic_cast<UltrasoundDeviceSim*>(m_ultradevice), m_ultradevice->GetDeviceValue().device_name.c_str());
 #endif
 
 #if USE_SIMU_SYRING
-    m_syringedevice = NewSyringeDevice(SYRINGEDEVICE_NUM_0, m_deviceevent);
+    m_syringedevice = NewSyringeDeviceSim(SYRINGEDEVICE_NUM_0, m_deviceevent);
     m_simupanel->AddSimDevice(dynamic_cast<SyringeDeviceSim*>(m_syringedevice), m_syringedevice->GetDeviceValue().device_name.c_str());
 #endif
 
@@ -153,19 +169,19 @@ int SystemDevice::CreateSimDevices()
 int SystemDevice::DestroySimDevices()
 {
 #if USE_SIMU_PLATE
-    DeleteArmPlateDevice(m_armplatedevice);
+    DeleteArmPlateDeviceSim(m_armplatedevice);
 #endif
 
 #if USE_SIMU_ARM
-    DeleteRobotArmDevice(m_robotarmdevice);
+    DeleteRobotArmDeviceSim(m_robotarmdevice);
 #endif
 
 #if USE_SIMU_ULTRA
-    DeleteUltrasoundDevice(m_ultradevice);
+    DeleteUltrasoundDeviceSim(m_ultradevice);
 #endif
 
 #if USE_SIMU_SYRING
-    DeleteSyringeDevice(m_syringedevice);
+    DeleteSyringeDeviceSim(m_syringedevice);
 #endif
 
     if (m_simupanel)

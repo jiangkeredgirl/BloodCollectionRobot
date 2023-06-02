@@ -161,6 +161,12 @@
     <ClInclude Include="Controller.h" />
     <QtMoc Include="ControllerUIAdapter.h" />
     <QtMoc Include="DeviceUI.h" />
+    <ClInclude Include="include\idevices\IArmPlateDevice.h" />
+    <ClInclude Include="include\idevices\IDevice.h" />
+    <ClInclude Include="include\idevices\IRobotArmDevice.h" />
+    <ClInclude Include="include\idevices\ISyringeDevice.h" />
+    <ClInclude Include="include\idevices\ISystemDevice.h" />
+    <ClInclude Include="include\idevices\IUltrasoundDevice.h" />
     <ClInclude Include="RobotArmDevice.h" />
     <QtMoc Include="RobotArmDeviceSim.h" />
     <QtMoc Include="SimuDevicesPanel.h" />

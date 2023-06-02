@@ -22,9 +22,9 @@ public:
 extern "C" {
 #endif
 	IArmPlateDevice* NewArmPlateDevice(int device_num, DeviceEvent device_event);
-	//typedef IArmPlateDevice* (*NewArmPlateDeviceFun)(int device_num, DeviceEvent device_event);
 	void DeleteArmPlateDevice(IArmPlateDevice* device);
-	//typedef void(*DeleteArmPlateDeviceFun)(IArmPlateDevice* device);
+	IArmPlateDevice* NewArmPlateDeviceSim(int device_num, DeviceEvent device_event);
+	void DeleteArmPlateDeviceSim(IArmPlateDevice* device);
 #ifdef __cplusplus
 }
 #endif

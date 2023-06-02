@@ -21,9 +21,9 @@ public:
 extern "C" {
 #endif
 	ISyringeDevice* NewSyringeDevice(int device_num, DeviceEvent device_event);
-	//typedef ISyringeDevice* (*NewSyringeDeviceFun)(int device_num, DeviceEvent device_event);
 	void DeleteSyringeDevice(ISyringeDevice* device);
-	//typedef void(*DeleteSyringeDeviceFun)(ISyringeDevice* device);
+	ISyringeDevice* NewSyringeDeviceSim(int device_num, DeviceEvent device_event);
+	void DeleteSyringeDeviceSim(ISyringeDevice* device);
 #ifdef __cplusplus
 }
 #endif
