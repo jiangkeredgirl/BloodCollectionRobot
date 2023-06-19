@@ -13,6 +13,8 @@ using namespace std;
 class IDeviceOperaHandler
 {
 public:
+	virtual ~IDeviceOperaHandler() = 0 {};
+	/// 状态机设备维护：一个设备对应一个函数，设备的增加、修改、删除，增删改以下函数
 	virtual int SystemDeviceHandle(const shared_ptr<DeviceOperaEvent>& opera_event) = 0;
 	virtual int ArmPlateDeviceHandle(const shared_ptr<DeviceOperaEvent>& opera_event) = 0;
 	virtual int RobotArmDeviceHandle(const shared_ptr<DeviceOperaEvent>& opera_event) = 0;

@@ -37,6 +37,7 @@ public:
 				LOG_WARN("this state machine haved registered, systemdevice_state = {}", systemdevice_state, DeviceStateStr(systemdevice_state));
 			}
 			m_statemachine[systemdevice_state] = statemachine;
+			/// 状态机设备维护：一个设备对应一个函数，设备的增加、修改、删除，增删改以下函数
 			m_statemachine_func[statemachine][DEVICE_TYPE_SYSTEM]     = [statemachine](const shared_ptr<DeviceEvent>& state_event)->int {  return statemachine->SystemDeviceHandle(state_event); };
 			m_statemachine_func[statemachine][DEVICE_TYPE_ARMPLATE]   = std::bind(&IDeviceHandler::ArmPlateDeviceHandle,   statemachine, std::placeholders::_1);
 			m_statemachine_func[statemachine][DEVICE_TYPE_ROBOTARM]   = std::bind(&IDeviceHandler::RobotArmDeviceHandle,   statemachine, std::placeholders::_1);

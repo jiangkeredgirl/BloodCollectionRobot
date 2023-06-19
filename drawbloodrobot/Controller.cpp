@@ -99,6 +99,10 @@ bool Controller::DevicesIsNormal()
 int Controller::InitStatMachine()
 {
 	/// 注册状态机
+	/// 状态机状态维护：一个状态对应一个类，状态的增加、修改、删除，增删改以下状态类
+	/// 以下代码将 DEVICE_STATE_NORMAL、DEVICE_STATE_STANDBY、DEVICE_STATE_RUNNING
+	/// 、DEVICE_STATE_WORKING、DEVICE_STATE_MANUAL、DEVICE_STATE_URGENTSTOP都绑定到了DeviceStateHandlerNormal类
+	/// 实际环境是一个状态对应一个类
 	DeviceStateHandler::instance().RegisterStateMachine(DEVICE_STATE_ABNORMAL,   &DeviceStateHandlerAbnormal::instance());
 	DeviceStateHandler::instance().RegisterStateMachine(DEVICE_STATE_NORMAL,     &DeviceStateHandlerNormal::instance());
 	DeviceStateHandler::instance().RegisterStateMachine(DEVICE_STATE_STANDBY,    &DeviceStateHandlerNormal::instance());
